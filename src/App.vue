@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="container">
+      <Header></Header>
+      <div class="row">
+        <div class="offset-sm-2 col-sm-4 col-12">
+          <img
+            id="classic-tee"
+            src="./assets/images/classic-tee.webp"
+            alt=""
+            width="394"
+            height="604"
+          >
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/Header.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    HelloWorld
+    Header
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+#classic-tee {
+  max-width: 100%;
+  height: auto;
 }
 </style>
