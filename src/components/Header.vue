@@ -1,25 +1,22 @@
 <template>
   <div class="row">
-    <div class="header"></div>
+    <div class="col-12">
+      <div class="header">
+        <cart></cart>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Cart from "./Cart.vue";
 export default {
-  name: "HelloWorld",
-  props: {
-    msg: String
+  components: {
+    Cart
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.header {
-  width: 100%;
-  height: 30px;
-  background-color: #f6f6f7;
-  margin-top: 12px;
-  margin-bottom: 30px;
-}
+<style>
 </style>
