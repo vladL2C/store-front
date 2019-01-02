@@ -11,6 +11,30 @@
       >
     </span>
     <div class="cart-items">
+      <div
+        class="item"
+        v-for="(item, i) in items"
+        :key="
+        i"
+      >
+        <img
+          src="../assets/images/classic-tee.webp"
+          alt=""
+          width="80"
+          height="130"
+          class="cart-item-img"
+        >
+
+        <div class="cart-details-container">
+          <div> {{item.productName}}</div>
+          <div> {{item.quantity}} x <span>
+              <b>{{item.price}}</b>
+            </span></div>
+          <div> Size: {{item.size}}</div>
+        </div>
+
+        <div></div>
+      </div>
 
     </div>
     ( {{quantity}} )
@@ -27,6 +51,7 @@ export default {
   },
   computed: {
     quantity() {
+      if (!this.cartDetails.productQuantity) return 0;
       return this.cartDetails.productQuantity;
     },
     items() {
@@ -42,6 +67,22 @@ export default {
 </script>
 
 <style>
+.cart-details-container div {
+  margin-top: 10px;
+}
+.cart-details-container {
+  display: inline-block;
+  text-align: left;
+  position: relative;
+  bottom: 10px;
+  margin-left: 10px;
+}
+.cart-item-img {
+  clear: both;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
 .my-cart {
   float: right;
   padding: 6px;
@@ -52,7 +93,6 @@ export default {
   font-size: 13px;
   font-weight: 600;
   color: #888888;
-  text-transform: capitalize;
   height: 31px;
   width: 95px;
 }
