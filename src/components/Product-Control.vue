@@ -13,22 +13,30 @@
     <div class="size-container">
       <span class="req-size">size</span>
       <span class="selected-size">{{selectedSize}}</span>
-      <div
-        class="store-buttons"
-        @click="selectSize"
-      >
-        <div
-          class="size-button"
-          :class="{highlight: selectedSize == 'S'}"
-        >S</div>
-        <div
-          class="size-button"
-          :class="{highlight: selectedSize == 'M'}"
-        >M</div>
-        <div
-          class="size-button"
-          :class="{highlight: selectedSize == 'L'}"
-        >L</div>
+      <div class="store-buttons">
+        <input
+          type="radio"
+          id="s"
+          value="S"
+          v-model="selectedSize"
+        >
+        <label for="s">S</label>
+
+        <input
+          type="radio"
+          id="m"
+          value="M"
+          v-model="selectedSize"
+        >
+        <label for="m">M</label>
+
+        <input
+          type="radio"
+          id="l"
+          value="L"
+          v-model="selectedSize"
+        >
+        <label for="l">L</label>
       </div>
     </div>
     <div
@@ -39,31 +47,54 @@
 </template>
 
 <script>
+import { EventBus } from "../event-bus.js";
 export default {
   data() {
     return {
-      selectedSize: ""
+      cartItems: [],
+      selectedSize: "",
+      productQuantity: 0
     };
   },
   methods: {
-    addItem() {},
-    selectSize(e) {
-      this.selectedSize = e.target.innerText;
+    addItem() {
+      if (!this.selectedSize) {
+        alert("No Size selected");
+        return;
+      }
+      const item = {
+        productName: "Classic Tee",
+        quantity: 1,
+        size: this.selectedSize,
+        price: "$75.00"
+      };
+
+      this.updateCart(item);
+      EventBus.$emit("cart-details", {
+        cartItems: this.cartItems,
+        productQuantity: this.productQuantity
+      });
+    },
+    updateCart(newItem) {
+      for (let i = 0; i < this.cartItems.length; i++) {
+        if (newItem.size == this.cartItems[i].size) {
+          this.cartItems[i].quantity++;
+          this.productQuantity++;
+          return;
+        }
+      }
+
+      this.cartItems.push(newItem);
+      this.productQuantity++;
     }
   }
 };
 </script>
 
 <style>
-.highlight {
-  border: 2px solid black;
-  color: black;
-}
-
 .selected-size {
   font-weight: bold;
   margin-left: 3px;
-  font-size: 13px;
-  line-height: 23px;
+  font-size: 11px;
 }
 </style>

@@ -13,12 +13,32 @@
     <div class="cart-items">
 
     </div>
-    ( 0 )
+    ( {{quantity}} )
   </div>
 </template>
 
 <script>
-export default {};
+import { EventBus } from "../event-bus.js";
+export default {
+  data() {
+    return {
+      cartDetails: {}
+    };
+  },
+  computed: {
+    quantity() {
+      return this.cartDetails.productQuantity;
+    },
+    items() {
+      return this.cartDetails.cartItems;
+    }
+  },
+  created(e) {
+    EventBus.$on("cart-details", cartDetails => {
+      this.cartDetails = cartDetails;
+    });
+  }
+};
 </script>
 
 <style>

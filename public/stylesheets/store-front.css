@@ -25,21 +25,6 @@
   cursor: pointer;
 }
 
-.store-buttons {
-  margin-top: 10px;
-}
-.size-button {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #cccccc;
-  display: inline-block;
-  color: #a5a0a0;
-  text-align: center;
-  line-height: 37px;
-  margin-right: 5px;
-  cursor: pointer;
-}
-
 .size-container {
   margin-top: 25px;
 }
@@ -77,4 +62,31 @@
   border-bottom: 1px solid #cccccc;
   padding-top: 7px;
   padding-bottom: 7px;
+}
+
+.store-buttons {
+  margin-top: 15px;
+}
+
+.store-buttons input[type='radio'] {
+  display: none;
+}
+
+.store-buttons label {
+  width: 45px;
+  height: 45px;
+  display: inline-block;
+  background-color: white;
+  padding: 5px 5px;
+  font-family: Arial;
+  font-size: 14px;
+  border: 1px solid #cccccc;
+  margin-right: 5px;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.store-buttons input[type='radio']:checked + label {
+  border: 2px solid black;
 }
